@@ -44,11 +44,11 @@ jobs:
 
       - name: SonarQube Quality Gate Check
         id: sonarqube-quality-gate-check
-        uses: sonarsource/sonar-quality-gate-action@master
+        uses: sonarsource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
 
   BUILD_AND_PUBLISH:
     needs: Testing
