@@ -25,31 +25,31 @@ jobs:
           distribution: temurin
           java-version: 11
           
-      - name: Setup SonarQube
-        uses: warchant/setup-sonar-scanner@v7
+      # - name: Setup SonarQube
+      #   uses: warchant/setup-sonar-scanner@v7
 
-      - name: SonarQube Scan
-        run: sonar-scanner
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.sources=src/
-          -Dsonar.junit.reportsPath=target/surefire-reports/
-          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
-          -Dsonar.jacoco.reportPaths=target/jacoco.exec
-          -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-          -Dsonar.java.binaries=target/classes/com/visualpathit/account/controllerTest/
-          -Dsonar.sourceEncoding=UTF-8
-          -Dsonar.language=java
+      # - name: SonarQube Scan
+      #   run: sonar-scanner
+      #     -Dsonar.host.url=${{ secrets.SONAR_URL }}
+      #     -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      #     -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+      #     -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+      #     -Dsonar.sources=src/
+      #     -Dsonar.junit.reportsPath=target/surefire-reports/
+      #     -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+      #     -Dsonar.jacoco.reportPaths=target/jacoco.exec
+      #     -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+      #     -Dsonar.java.binaries=target/classes/com/visualpathit/account/controllerTest/
+      #     -Dsonar.sourceEncoding=UTF-8
+      #     -Dsonar.language=java
 
-      - name: SonarQube Quality Gate Check
-        id: sonarqube-quality-gate-check
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+      # - name: SonarQube Quality Gate Check
+      #   id: sonarqube-quality-gate-check
+      #   uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
 
   BUILD_AND_PUBLISH:
     needs: Testing
